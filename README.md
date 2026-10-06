@@ -57,4 +57,4 @@ If RNNoise is unavailable or incompatible, the cleaner falls back to `noisereduc
 
 ## VS Code Tasks
 
-The included `tasks.json` is at the project root. VS Code discovers project tasks from `.vscode\tasks.json`; move or copy it there if you want to use those tasks. On Windows, set each task's `command` to `.venv\Scripts\python.exe` so it uses the environment containing the audio dependencies.
+The included `tasks.json` is at the project root. VS Code discovers project tasks from `.vscode\tasks.json`; move or copy it there if you want to use those tasks. On Windows, set each task's `command` to `.venv\Scripts\python.exe` so it uses the environment containing the audio dependencies
