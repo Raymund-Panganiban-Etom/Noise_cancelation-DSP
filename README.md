@@ -1,4 +1,4 @@
-# Audio Cleaner Setup
+# Audio Cleaner Setup.
 
 ## Requirements
 
