@@ -1,16 +1,16 @@
-# Audio Cleaner Setup.
+# ClearTone Studio — Voice & Background Noise Divider
 
 ## Requirements
 
-- Windows 10 or later
+- Windows 10 or later (also works on Linux/macOS via CLI or Web UI)
 - Python 3.10 or later, with Tkinter available
-- Internet access for the initial package install
+- Internet access only for the initial package install
 
-The `imageio-ffmpeg` package provides the FFmpeg executable used for compressed audio such as AAC and M4A. A separate system-wide FFmpeg install is not required.
+The `imageio-ffmpeg` package provides the FFmpeg executable used for MP3, AAC, M4A, WMA, OPUS, and MP4 audio. A separate system-wide FFmpeg install is not required.
 
 ## Install
 
-Open PowerShell in the project folder (`f:\midterm`) and run:
+Open PowerShell in the project folder and run:
 
 ```powershell
 python -m venv .venv
@@ -19,13 +19,21 @@ python -m pip install --upgrade pip
 python -m pip install numpy scipy soundfile noisereduce imageio-ffmpeg
 ```
 
-If PowerShell blocks environment activation, skip the activation command and replace `python` in the commands below with `\.venv\Scripts\python.exe`.
+If PowerShell blocks environment activation, replace `python` in the commands below with `.venv\Scripts\python.exe`.
 
-In VS Code, select the project interpreter with **Python: Select Interpreter**, then choose `.venv\Scripts\python.exe`.
+## Features
 
-## Run the App
+- **Divide Voice & Background Noise**: Splits a single `.mp3`, `.wav`, `.flac`, `.m4a`, `.ogg`, etc. file into separate **Human Voice** and **Background Noise** stems in low-RAM chunked blocks (~100-180 MB RAM, tuned for dual-core CPUs without GPU).
+- **Recognize Background Noise Types**: Analyzes the background stem to identify **Wind / Gusts**, **Animal (Birds, Dog/Bark, Insects/Crickets)**, **Rain / Water**, **Traffic / Engine / Hum**, **Clicks / Impacts**, **Crowd / Chatter**, **Static / Hiss**, and **Music / Tonal Bed**, along with time-segment breakdowns.
+- **Choose What to Delete & Download**:
+  - **Delete Background Noise** (keep clean Human Voice)
+  - **Delete Human Voice** (keep Background Noise)
+  - **Custom / Selective Delete** (delete Human Voice and/or specific recognized noise types such as Wind or Animal)
+  - Export/download as **WAV**, **MP3**, **FLAC**, or **OGG**, or download both stems.
 
-Launch the graphical interface with either command:
+## Run the Graphical Studio
+
+Launch the upgraded Desktop Studio:
 
 ```powershell
 python cleaner.py
@@ -37,24 +45,42 @@ or:
 python try.py
 ```
 
-Choose the input audio, output path and format, then select **Clean audio**. The default output is a WAV copy next to the source. Supported inputs include WAV, FLAC, OGG, MP3, AAC, M4A, WMA, OPUS, and MP4. Compressed formats that SoundFile cannot read are decoded through the bundled FFmpeg executable.
+Or launch the lightweight local **Web Studio** in your browser (or click **Open Web UI** inside the desktop window):
+
+```powershell
+python cleaner.py --web
+```
 
 ## Command-Line Use
 
-Passing arguments to `cleaner.py` runs the command-line interface instead of opening the window:
+Divide an MP3 into Human Voice + Background Noise stems and recognize noise categories:
 
 ```powershell
-python cleaner.py "C:\Audio\interview.aac" --strength 0.85 --format wav
+python cleaner.py "C:\Audio\recording.mp3" --divide --format mp3
 ```
 
-For speech-focused RNNoise processing, install its optional package:
+Delete Human Voice and keep only Background Noise:
 
 ```powershell
-python -m pip install pyrnnoise
+python cleaner.py "C:\Audio\recording.mp3" --delete voice -o background_only.wav
 ```
 
-If RNNoise is unavailable or incompatible, the cleaner falls back to `noisereduce`.
+Selectively delete specific recognized noises (e.g., Wind):
 
-## VS Code Tasks
+```powershell
+python cleaner.py "C:\Audio\outdoor.wav" --delete custom --remove-noise wind -o outdoor_no_wind.wav
+```
 
-The included `tasks.json` is at the project root. VS Code discovers project tasks from `.vscode\tasks.json`; move or copy it there if you want to use those tasks. On Windows, set each task's `command` to `.venv\Scripts\python.exe` so it uses the environment containing the audio dependencies
+Analyze and print the background noise report only:
+
+```powershell
+python cleaner.py "C:\Audio\outdoor.mp3" --analyze
+```
+
+Legacy stationary spectral-gating denoising remains supported via `--engine noisereduce`.
+
+
+<img width="1366" height="768" alt="ui noise divider" src="https://github.com/user-attachments/assets/2cb9ea11-3094-489d-be2b-335265912cc4" />
+<img width="1366" height="768" alt="noise dvider1" src="https://github.com/user-attachments/assets/414f8692-e4f8-40b9-a53a-6d637e1cb086" />
+<img width="1366" height="768" alt="noise" src="https://github.com/user-attachments/assets/4dae2f32-efe7-4c06-a181-fbcc0f5c4ddc" />
+<img width="1366" height="768" alt="noise divider" src="https://github.com/user-attachments/assets/12d6091a-9ecf-4edb-8af0-dce1ed3d8269" />
