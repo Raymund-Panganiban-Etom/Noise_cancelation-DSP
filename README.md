@@ -84,3 +84,4 @@ Legacy stationary spectral-gating denoising remains supported via `--engine nois
 <img width="1366" height="768" alt="noise dvider1" src="https://github.com/user-attachments/assets/414f8692-e4f8-40b9-a53a-6d637e1cb086" />
 <img width="1366" height="768" alt="noise" src="https://github.com/user-attachments/assets/4dae2f32-efe7-4c06-a181-fbcc0f5c4ddc" />
 <img width="1366" height="768" alt="noise divider" src="https://github.com/user-attachments/assets/12d6091a-9ecf-4edb-8af0-dce1ed3d8269" />
+<img width="1366" height="768" alt="noises" src="https://github.com/user-attachments/assets/a4ea4473-47f9-4ec7-9949-7d8a8b81ad2d" />
