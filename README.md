@@ -79,6 +79,14 @@ python cleaner.py "C:\Audio\outdoor.mp3" --analyze
 
 Legacy stationary spectral-gating denoising remains supported via `--engine noisereduce`.
 
+Here's the Perfect Version of Noise remover and Divider
+
+- What's New?
+Now you can select and play background noise separate from Human voice, you can play also Human voice separate in background noise.
+Detect what noise is it, if be an animal, wind, truck, etc.....
+Wave view of Human and Background sound
+Can download the output 
+
 
 <img width="1366" height="768" alt="ui noise divider" src="https://github.com/user-attachments/assets/2cb9ea11-3094-489d-be2b-335265912cc4" />
 <img width="1366" height="768" alt="noise dvider1" src="https://github.com/user-attachments/assets/414f8692-e4f8-40b9-a53a-6d637e1cb086" />
